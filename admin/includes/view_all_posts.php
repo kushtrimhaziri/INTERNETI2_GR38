@@ -10,6 +10,8 @@
         <th>Tags</th>
         <th>Comments</th>
         <th>Date</th>
+        <th>Edit</th>
+        <th>Delete</th>
     </tr>
     </thead>
     <tbody>
@@ -44,6 +46,7 @@
 
                 echo "<td>{$cat_title}</td>";
             }
+
             echo "<td>$post_status</td>";
             echo "<td><img width='100' src='../images/$post_image' alt='image'></td>";
             echo "<td>$post_tags</td>";
@@ -57,10 +60,6 @@
         ?>
 
 
-
-
-
-
     </tr>
     </tbody>
     </table>
@@ -71,6 +70,7 @@ if (isset($_GET['delete'])){
 
    $query = "DELETE FROM posts WHERE post_id={$the_post_id}";
    $delete_query = mysqli_query($connection,$query);
+   header("Location: posts.php");
 }
 
 ?>
