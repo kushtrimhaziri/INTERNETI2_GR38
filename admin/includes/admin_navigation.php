@@ -22,7 +22,7 @@
                 <li>
                     <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
                 </li>
-                    <a href="#"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                    <a href="../includes/logout.php"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
                 </li>
             </ul>
         </li>
@@ -55,13 +55,13 @@
             </li>
 
             <li>
-                <a href="javascript:;" data-toggle="collapse" data-target="#posts_dropdown"><i class="fa fa-fw fa-arrows-v"></i> Users <i class="fa fa-fw fa-caret-down"></i></a>
-                <ul id="posts_dropdown" class="collapse">
+                <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Users <i class="fa fa-fw fa-caret-down"></i></a>
+                <ul id="demo" class="collapse">
                     <li>
-                        <a href="#">Dropdown item</a>
+                        <a href="users.php">View All Users</a>
                     </li>
                     <li>
-                        <a href="#">Dropdown item</a>
+                        <a href="users.php?source=add_user"">Add User</a>
                     </li>
                 </ul>
             </li>
