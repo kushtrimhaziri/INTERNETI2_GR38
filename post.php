@@ -43,7 +43,7 @@ include "includes/navigation.php";
                 <img class="img-responsive" src="images/<?php echo $post_image;?>" alt="">
                 <hr>
                 <p><?= $post_content ?></p>
-                <a class="btn btn-primary" href="#">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
+                
 
                 <hr>
 
@@ -171,7 +171,7 @@ include "includes/navigation.php";
 
         <!-- Blog Sidebar Widgets Column -->
 
-        <?php include "includes/sidebar.php" ; ?>
+        <?php include "includes/sidebar.php"; ?>
 
     </div>
 
