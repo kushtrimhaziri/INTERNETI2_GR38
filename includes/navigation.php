@@ -27,7 +27,9 @@
 
 
                 ?>
-
+		<li>
+                    <a href="standings.php">Standings</a>
+                </li>	
 
                 <li>
                     <a href="admin">Admin</a>
