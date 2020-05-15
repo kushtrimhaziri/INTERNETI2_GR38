@@ -30,9 +30,19 @@ include "includes/navigation.php";
 
 
 
-            $post_query_count = "SELECT * FROM posts";
+            $post_query_count = "SELECT * FROM posts  WHERE post_status='published' ";
             $find_count = mysqli_query($connection,$post_query_count);
             $count = mysqli_num_rows($find_count);
+            
+            
+            if($count<1){
+                echo"NO POSTS";
+                  echo"<br>NO POSTS</br>";
+                                  echo"<br><h1 class='text-center'>NO POSTS AVALIABLE</h1></br>";
+
+                 
+            }
+            else{
 
             $count=ceil($count/5);
 
@@ -53,7 +63,6 @@ include "includes/navigation.php";
                 $post_status = $row['post_status'];
 
 
-                if($post_status == 'published'){
 
 
 
@@ -80,7 +89,9 @@ include "includes/navigation.php";
 
                     <hr>
 
-                <?php }  }?>
+                <?php } 
+                
+                 }?>
 
 
 
@@ -119,4 +130,3 @@ include "includes/navigation.php";
 
 
 <?php
-
