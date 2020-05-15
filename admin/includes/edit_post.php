@@ -182,7 +182,7 @@ else{
     <div class="form-group">
         <label for="post_content">Post Content</label>
         <textarea class="form-control" name="post_content" cols="20" rows="10">
-          <?php echo $post_content; ?>"
+          <?php echo str_replace('\r\n', '<br>', $post_content); ?>
         </textarea>
     </div>
 
