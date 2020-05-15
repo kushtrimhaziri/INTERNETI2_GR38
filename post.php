@@ -13,7 +13,14 @@ include "includes/navigation.php";
             <?php
             if (isset($_GET['p_id'])){
                 $the_post_id=$_GET['p_id'];
+
+            $view_query="UPDATE posts SET post_views_count= post_views_count+1 WHERE post_id=$the_post_id";
+            $send_query=mysqli_query($connection,$view_query);
+
+            if (!$send_query){
+                die("QUERY FAILED");
             }
+
 
             $query= "SELECT * FROM posts WHERE post_id =$the_post_id";
             $select_all_posts = mysqli_query($connection,$query);
@@ -47,7 +54,10 @@ include "includes/navigation.php";
 
                 <hr>
 
-            <?php }?>
+            <?php }}
+            else
+                header("Location: index.php");
+                ?>
 
             <!-- Blog Comments -->
 
@@ -55,11 +65,15 @@ include "includes/navigation.php";
 
             if(isset($_POST['create_comment'])) {
 
+
+
                 $the_post_id = $_GET['p_id'];
 
                 $comment_author = $_POST['comment_author'];
                 $comment_email = $_POST['comment_email'];
                 $comment_content = $_POST['comment_content'];
+                if (!empty($comment_author) && !empty($comment_email) && !empty($comment_content)){
+
 
                 $query = "INSERT INTO comments (comment_post_id, comment_author, comment_email, comment_content,
                 comment_status, comment_date)";
@@ -71,11 +85,16 @@ include "includes/navigation.php";
                         die('QUERY FAILED ' . mysqli_error($connection));
                     }
 
-                $query = "UPDATE posts SET post_comment_count = post_comment_count+1";
-                $query .= "WHERE post_id = $the_post_id ";
-
-                $update_comment_count = mysqli_query($connection, $query);
-
+//
+//                $query = "UPDATE posts SET post_comment_count = post_comment_count+1";
+//                $query .= "WHERE post_id = $the_post_id ";
+//
+//                $update_comment_count = mysqli_query($connection, $query);
+                }
+                else
+                {
+                   echo "<script>alert('Fields should not be empty')</script>";
+                }
 
 
             }
