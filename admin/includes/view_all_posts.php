@@ -70,12 +70,14 @@ foreach($_POST['checkBoxArray'] as $checkBoxValue) {
         <th><input  id="selectAllBoxes" type="checkbox"/></th>
         <th>ID</th>
         <th>User</th>
+        <th>Author</th>
         <th>Title</th>
         <th>Category</th>
         <th>Status</th>
         <th>Image</th>
         <th>Tags</th>
         <th>Comments</th>
+        <th></th>
         <th>Date</th>
         <th>Edit</th>
         <th>Delete</th>
@@ -152,6 +154,8 @@ foreach($_POST['checkBoxArray'] as $checkBoxValue) {
             echo "<td>$post_comment_count</td>";
             echo "<td>$post_date</td>";
             echo "<td><a href='posts.php?source=edit_post&p_id={$post_id}'>Edit</a></td>";
+
+
 			echo "<td><a rel='$post_id' href='javascript:void(0)' class='delete_link'>Delete</a></td>";
            // echo "<td><a onclick=\"javascript: return confirm('Are you sure you want to delete?'); \" href='posts.php?delete={$post_id}'>Delete</a></td>";
 
