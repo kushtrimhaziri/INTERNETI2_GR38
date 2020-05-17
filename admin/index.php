@@ -194,7 +194,7 @@
                 <div class="row">
 
                     <script type="text/javascript">
-                        google.charts.load('current', {'packages':['bar']});
+                        google.charts.load('current', {'packages'😞'bar']});
                         google.charts.setOnLoadCallback(drawChart);
 
                         function drawChart() {
