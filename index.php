@@ -1,7 +1,12 @@
 <?php include "includes/header.php";
 include "includes/db.php";
 include "includes/navigation.php";
+
 ?>
+
+
+    </body>
+    </html>
 
 
     <div class="container">
@@ -28,21 +33,23 @@ include "includes/navigation.php";
                 $page_1=($page*3)-3;
             }
 
+            if(isset($_SESSION['user_role'])&&$_SESSION['user_role']=='admin'){
 
+                $post_query_count = "SELECT * FROM posts";
 
-            $post_query_count = "SELECT * FROM posts  WHERE post_status='published' ";
-            $find_count = mysqli_query($connection,$post_query_count);
-            $count = mysqli_num_rows($find_count);
-            
-            
-            if($count<1){
-                echo"NO POSTS";
-                  echo"<br>NO POSTS</br>";
-                                  echo"<br><h1 class='text-center'>NO POSTS AVALIABLE</h1></br>";
-
-                 
             }
             else{
+
+                $post_query_count = "SELECT * FROM posts WHERE post_status='published'";
+            }
+
+            $find_count = mysqli_query($connection,$post_query_count);
+            $count = mysqli_num_rows($find_count);
+            if($count<1){
+                echo "<br><br><br>";
+                 echo "<h1>NO POSTS</h1>";
+            }
+            else {
 
             $count=ceil($count/5);
 
@@ -61,6 +68,7 @@ include "includes/navigation.php";
                 $post_image= $row['post_image'];
                 $post_content= substr($row['post_content'],0,200);
                 $post_status = $row['post_status'];
+
 
 
 
@@ -89,9 +97,7 @@ include "includes/navigation.php";
 
                     <hr>
 
-                <?php } 
-                
-                 }?>
+                <?php }}?>
 
 
 
