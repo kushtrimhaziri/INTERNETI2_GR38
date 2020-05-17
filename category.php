@@ -14,15 +14,46 @@ include "includes/navigation.php";
             if (isset($_GET['category']))
             {
                 $post_category_id=$_GET['category'];
-            
-            $query= "SELECT * FROM posts WHERE post_category_id=$post_category_id AND  post_status='published'";
-            $select_all_posts = mysqli_query($connection,$query);
-                if(mysqli_num_rows($select_all_posts)<1){
-                    echo "<h1 class='text-center'>No posts available</h1>";
+
+                if(isset($_SESSION['user_role'])&&$_SESSION['user_role']=='admin'){
+
+                    $stmt1= mysqli_prepare($connection,"SELECT post_id,post_title , post_author , post_date , post_image, post_content FROM posts WHERE post_category_id =?");
+
                 }
                 else{
 
-            while ($row=mysqli_fetch_assoc($select_all_posts)){
+                    $stmt2= mysqli_prepare($connection,"SELECT post_id,post_title , post_author , post_date , post_image, post_content FROM posts WHERE post_category_id =? AND post_status=?");
+
+                    $published='published';
+                }
+
+if (isset($stmt1)){
+    mysqli_stmt_bind_param($stmt1,"i",$post_category_id);
+    mysqli_stmt_execute($stmt1);
+    mysqli_stmt_bind_result($stmt1,$post_id, $post_title,  $post_author,$post_date ,$post_image,$post_content);
+$stmt=$stmt1;
+
+}
+else{
+    mysqli_stmt_bind_param($stmt2,"is",$post_category_id, $published);
+    mysqli_stmt_execute($stmt2);
+    mysqli_stmt_bind_result($stmt1,$post_id, $post_title,  $post_author,$post_date ,$post_image,$post_content);
+    $stmt=$stmt2;
+
+}
+
+
+
+            if(mysqli_stmt_num_rows($stmt)===0){
+                echo "<br><br><br>";
+                echo "<h1>No posts available</h1>";
+            }
+
+
+
+
+
+            while (mysqli_stmt_fetch($stmt)):
                 $post_id= $row['post_id'];
                 $post_title =$row['post_title'];
                 $post_author= $row['post_author'];
@@ -52,11 +83,14 @@ include "includes/navigation.php";
 
                 <hr>
 
-            <?php }}}
+            <?php endwhile; mysqli_stmt_close($stmt); }
             else{
-                header(Location: index.php);
+
+                header("Location: header.php");
             }
-            
+
+
+
             ?>
 
 
