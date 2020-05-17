@@ -8,7 +8,7 @@ $select_posts_by_id= mysqli_query($connection,$query);
 
 while ($row=mysqli_fetch_assoc($select_posts_by_id)) {
     $post_id = $row['post_id'];
-    $post_user = $row['$post_user'];
+    $post_user = $row['post_user'];
     $post_title = $row['post_title'];
     $post_category_id = $row['post_category_id'];
     $post_status = $row['post_status'];
@@ -21,7 +21,7 @@ while ($row=mysqli_fetch_assoc($select_posts_by_id)) {
 }
 if (isset($_POST['update_post'])){
 
-    $post_user = $_POST['$post_user'];
+    $post_user = $_POST['post_user'];
     $post_title = $_POST['post_title'];
     $post_category_id = $_POST['post_category'];
     $post_status = $_POST['post_status'];
@@ -47,7 +47,7 @@ if (isset($_POST['update_post'])){
     $query.="post_title='{$post_title}', ";
     $query.="post_category_id='{$post_category_id}', ";
     $query.="post_date=now(), ";
-    $query.="$post_user='{$post_user}', ";
+    $query.="post_user='{$post_user}', ";
     $query.="post_status='{$post_status}', ";
     $query.="post_tags='{$post_tags}', ";
     $query.="post_content='{$post_content}', ";
@@ -182,7 +182,8 @@ else{
     <div class="form-group">
         <label for="post_content">Post Content</label>
         <textarea class="form-control" name="post_content" cols="20" rows="10">
-          <?php echo str_replace('\r\n', '<br>', $post_content); ?>
+         <?php echo $post_content = preg_replace('/r/n', '</br>', $post_content); ?>
+
         </textarea>
     </div>
 
