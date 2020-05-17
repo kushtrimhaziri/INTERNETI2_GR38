@@ -15,10 +15,10 @@ if (isset($_POST['create_post'])) {
 
     move_uploaded_file($post_image_temp, "../images/$post_image");
 
-    $query = "INSERT INTO posts(post_category_id,post_title,post_user,
+    $query = "INSERT INTO posts(post_category_id,post_title,post_author,post_user,
                post_date,post_image,post_content,post_tags,post_status) ";
 
-    $query.="VALUES('{$post_category_id}','{$post_title}','{$post_user}',now(),'{$post_image}','{$post_content}',
+    $query.="VALUES('{$post_category_id}','{$post_title}','{$post_user}','{$post_user}',now(),'{$post_image}','{$post_content}',
                '{$post_tags}', '{$post_status}')";
 
 
@@ -52,7 +52,10 @@ if (isset($_POST['create_post'])) {
 
             }
 
+
+
             ?>
+
 
         </select>
     </div>
@@ -74,6 +77,9 @@ if (isset($_POST['create_post'])) {
                 echo "<option value='$username'>{$username}</option>";
 
             }
+
+
+
             ?>
 
 
@@ -95,7 +101,13 @@ if (isset($_POST['create_post'])) {
             <option value="draft">Draft</option>
         </select>
 
+
+
+
     </div>
+
+
+
 
     <div class="form-group">
         <label for="post_image">Post Image</label>
@@ -109,7 +121,7 @@ if (isset($_POST['create_post'])) {
 
     <div class="form-group">
         <label for="post_content">Post Content</label>
-        <textarea class="form-control" name="post_content" cols="20" rows="10">
+        <textarea class="form-control" name="post_content"  cols="20" rows="10">
         </textarea>
     </div>
 
@@ -119,4 +131,3 @@ if (isset($_POST['create_post'])) {
 
 
 </form>
-
